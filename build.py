@@ -2,7 +2,7 @@
 """Builds the static posteeze.com pages into ./public. Edit the content here, then run it."""
 import pathlib, shutil
 
-APP_URL = "https://postiz-production-c13c5736.up.railway.app"  # switch to https://app.posteeze.com once DNS is live
+APP_URL = "https://app.posteeze.com"
 SITE_URL = "https://posteeze.com"
 CONTACT = "support@posteeze.com"
 COMPANY = "[Company legal name]"          # fill in before submitting app reviews
