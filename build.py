@@ -47,7 +47,7 @@ def head(title, desc, path=""):
 <body>
 <header><div class="wrap nav">
 <a href="/" aria-label="Posteeze home"><img src="/assets/logo-text-dark.svg" alt="Posteeze" width="170" height="30"></a>
-<nav><a href="/#features">Features</a><a href="/#how">How it works</a><a href="{APP_URL}/auth/login">Sign in</a><a class="btn" href="{APP_URL}/auth">Get started</a></nav>
+<nav><a href="/#features">Features</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a><a href="{APP_URL}/auth/login">Sign in</a><a class="btn" href="{APP_URL}/auth">Start free</a></nav>
 </div></header>
 <main>
 """
@@ -77,16 +77,60 @@ ORBIT = """<svg class="orbit" viewBox="0 0 64 64" role="img" aria-label="Posteez
 CHANNELS = ["Instagram", "Facebook", "LinkedIn", "X", "TikTok", "YouTube", "Threads", "Pinterest",
             "Google Business Profile", "Reddit", "Bluesky", "Mastodon", "Telegram", "Discord"]
 
+CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C6F432" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>'
+
+MOCKUP = """<div class="mock" role="img" aria-label="Posteeze calendar showing scheduled posts across Instagram, LinkedIn and TikTok">
+<div class="mock-bar"><span></span><span></span><span></span><div class="mock-title">Week of 1 December</div></div>
+<div class="mock-days">
+<div class="day"><b>Mon</b><div class="post ig"><i>IG</i>New collection drop</div><div class="post li"><i>in</i>Hiring: designer</div></div>
+<div class="day"><b>Tue</b><div class="post tt"><i>TT</i>Behind the scenes</div></div>
+<div class="day"><b>Wed</b><div class="post li"><i>in</i>Client success story</div><div class="post ig"><i>IG</i>Reel: 3 quick tips</div></div>
+<div class="day"><b>Thu</b><div class="post fb"><i>f</i>Weekend offer</div></div>
+<div class="day"><b>Fri</b><div class="post ig"><i>IG</i>Team Friday</div><div class="post tt"><i>TT</i>Trend remix</div></div>
+</div>
+<div class="mock-ai"><span class="spark" aria-hidden="true">&#10022;</span><div><b>AI draft ready</b><small>3 captions for Wednesday, in your brand voice</small></div><span class="mock-btn">Approve</span></div>
+</div>"""
+
 INDEX = head("Posteeze: your socials, on autopilot",
              "Plan, write and schedule posts for every channel from one calendar. Posteeze publishes them on time.") + f"""
-<div class="wrap hero">
-<div>
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="pill"><span class="dot" aria-hidden="true"></span>Social media scheduling, with AI built in</div>
 <h1>Your socials,<br>on <em>autopilot</em>.</h1>
-<p>Plan, write and schedule posts for every channel from one calendar. Posteeze publishes them on time, so your brand keeps showing up while you run the business.</p>
-<div class="cta"><a class="btn" href="{APP_URL}/auth">Get started</a><a class="btn ghost" href="#how">See how it works</a></div>
+<p class="lead">Plan a month of posts in one sitting. Posteeze writes them with AI, lines them up on one calendar and publishes them to every channel on time.</p>
+<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a><a class="btn btn-lg ghost" href="#how">See how it works</a></div>
+<ul class="trust">
+<li>{CHECK}Official login for every network</li>
+<li>{CHECK}Approve before anything goes live</li>
+<li>{CHECK}One calendar for all your brands</li>
+</ul>
 </div>
-{ORBIT}
+{MOCKUP}
+</div></section>
+
+<section class="strip" aria-label="Supported channels"><div class="wrap">
+<p class="strip-title">Publish to the networks your customers use</p>
+<div class="channels">{''.join(f'<span>{c}</span>' for c in CHANNELS)}<span>and more</span></div>
+</div></section>
+
+<section id="why"><div class="wrap split">
+<div>
+<div class="eyebrow">Why Posteeze</div>
+<h2>Posting every day is a job. Hand it to autopilot.</h2>
 </div>
+<div class="compare">
+<div class="col before"><h3>Without Posteeze</h3><ul>
+<li>Logging in to five apps to post the same update</li>
+<li>Writing captions from scratch, every time</li>
+<li>Gaps in your feed whenever things get busy</li>
+</ul></div>
+<div class="col after"><h3>With Posteeze</h3><ul>
+<li>Write once, publish everywhere from one place</li>
+<li>AI drafts captions in your brand's voice</li>
+<li>Posts go out on schedule, even on your busiest days</li>
+</ul></div>
+</div>
+</div></section>
 
 <section id="features"><div class="wrap">
 <div class="eyebrow">What you get</div>
@@ -99,7 +143,6 @@ INDEX = head("Posteeze: your socials, on autopilot",
 <div class="card">{ICON(I_CHART)}<h3>Analytics</h3><p>Track reach and engagement per channel and per post, in one view.</p></div>
 <div class="card">{ICON(I_TEAM)}<h3>Workspaces</h3><p>Keep each brand or client separate, with its own channels, members and settings.</p></div>
 </div>
-<div class="channels" aria-label="Supported channels">{''.join(f'<span>{c}</span>' for c in CHANNELS)}<span>and more</span></div>
 </div></section>
 
 <section id="how"><div class="wrap">
@@ -110,12 +153,37 @@ INDEX = head("Posteeze: your socials, on autopilot",
 <div class="card"><h3>Plan and write</h3><p>Draft posts yourself or with AI, add media, and place them on the calendar.</p></div>
 <div class="card"><h3>Publish on time</h3><p>Posteeze sends each post at its scheduled time and shows you how it performs.</p></div>
 </div>
+<div class="cta center"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a></div>
 </div></section>
 
-<section class="final"><div class="wrap">
-<h2>Ready to put your socials on autopilot?</h2>
-<div class="cta"><a class="btn" href="{APP_URL}/auth">Create your account</a></div>
+<section id="who"><div class="wrap">
+<div class="eyebrow">Built for</div>
+<h2>Whoever runs your socials, Posteeze fits.</h2>
+<div class="grid three">
+<div class="card"><h3>Business owners</h3><p>Keep every channel active without hiring a full-time social media manager.</p></div>
+<div class="card"><h3>Agencies</h3><p>Run every client from one login, each in its own workspace with its own approvals.</p></div>
+<div class="card"><h3>Marketing teams</h3><p>Plan campaigns together, review drafts and see what performs, in one place.</p></div>
+</div>
 </div></section>
+
+<section id="faq"><div class="wrap faq-wrap">
+<div><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
+<div class="faq">
+<details open><summary>Do I need to share my social media passwords?</summary><p>No. You connect each account through the network's own official login, and you can disconnect it any time.</p></details>
+<details><summary>Which networks can I post to?</summary><p>Instagram, Facebook, LinkedIn, X, TikTok, YouTube, Threads, Pinterest, Google Business Profile, Reddit, Bluesky, Mastodon, Telegram, Discord and more.</p></details>
+<details><summary>Can the AI write in my brand's voice?</summary><p>Yes. Give it an idea and it drafts captions for each platform. You edit or approve before anything is scheduled.</p></details>
+<details><summary>Can my team or clients approve posts first?</summary><p>Yes. Invite them to a workspace and drafts wait for review before they are published.</p></details>
+<details><summary>Can I manage more than one brand?</summary><p>Yes. Each brand or client gets its own workspace, channels and members.</p></details>
+</div>
+</div></section>
+
+<section class="final"><div class="wrap final-box">
+<h2>Ready to put your socials on autopilot?</h2>
+<p>Connect your first channel and schedule this week's posts today.</p>
+<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a><a class="btn btn-lg ghost" href="mailto:{CONTACT}">Talk to us</a></div>
+</div></section>
+
+<div class="sticky-cta" aria-hidden="false"><a class="btn" href="{APP_URL}/auth">Start free</a></div>
 """ + FOOT
 
 
