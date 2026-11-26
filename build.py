@@ -129,7 +129,7 @@ INDEX = head("Posteeze: your AI social media manager",
 <ul class="trust">
 <li>{CHECK}Set up in 4 simple steps</li>
 <li>{CHECK}Plans from $49 a month</li>
-<li>{CHECK}Approve before anything goes live</li>
+<li>{CHECK}Approve posts on WhatsApp, email or in the app</li>
 </ul>
 </div>
 {MOCKUP}
@@ -169,7 +169,7 @@ INDEX = head("Posteeze: your AI social media manager",
 <li><span class="n">1</span><h3>Pick your channels</h3><p>Choose where you post: Instagram, TikTok, LinkedIn, Facebook, YouTube and more.</p></li>
 <li><span class="n">2</span><h3>Connect them</h3><p>Sign in through each network's official login. We never see your passwords.</p></li>
 <li><span class="n">3</span><h3>Tell the AI about your business</h3><p>Your products, audience, tone and goals. It becomes your brand brief.</p></li>
-<li><span class="n">4</span><h3>Choose your plan and go</h3><p>Pick posts per month and the next one or two months are planned, designed and scheduled.</p></li>
+<li><span class="n">4</span><h3>Choose your plan and go</h3><p>Pick posts per month and where you approve them: the app, email or WhatsApp. Then it plans, designs and schedules.</p></li>
 </ol>
 <div class="cta center"><a class="btn btn-lg" href="{APP_URL}/auth">Start your autopilot</a></div>
 </div></section>
@@ -185,7 +185,7 @@ INDEX = head("Posteeze: your AI social media manager",
 <div class="card">{ICON(I_PEN)}<h3>Writes every caption</h3><p>Platform-ready captions and hashtags in your brand's voice, for every post.</p></div>
 <div class="card">{ICON(I_CLOCK)}<h3>Posts at the best time</h3><p>Publishes everywhere at once, at the times your audience is most active.</p></div>
 <div class="card">{ICON(I_CHART)}<h3>Learns what works</h3><p>Tracks reach and engagement, spots what goes viral and does more of it.</p></div>
-<div class="card">{ICON(I_CHECK)}<h3>Asks before posting</h3><p>Review the plan in one click, or let it post on full autopilot. Your choice.</p></div>
+<div class="card">{ICON(I_CHECK)}<h3>Approve from anywhere</h3><p>Get each post in the app, by email or on WhatsApp and approve with one tap. Or let it run on full autopilot.</p></div>
 <div class="card">{ICON(I_TEAM)}<h3>Runs many brands</h3><p>Each brand gets its own brief, channels, calendar and approvals.</p></div>
 </div>
 </div></section>
@@ -213,6 +213,7 @@ INDEX = head("Posteeze: your AI social media manager",
 <div><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
 <div class="faq">
 <details open><summary>Does it really post by itself?</summary><p>Yes. Once your plan is set, Posteeze creates and schedules your posts and publishes them on time. You can review each post first, or turn on full autopilot.</p></details>
+<details><summary>How do I approve posts?</summary><p>Choose during setup: in the Posteeze app, by email, on WhatsApp, or all three. Each preview comes with Approve and Request changes buttons, so you can sign off from your phone in seconds.</p></details>
 <details><summary>How does it know my business?</summary><p>During setup you describe your business, audience, offers and tone. Posteeze turns that into a brand brief and uses it for every idea, design and caption.</p></details>
 <details><summary>What kind of videos can it make?</summary><p>Short AI videos, cinematic clips and motion graphics sized for Reels, TikTok and YouTube Shorts. The number per month depends on your plan.</p></details>
 <details><summary>Do I need to share my social media passwords?</summary><p>No. You connect each account through the network's own official login, and you can disconnect it any time.</p></details>
