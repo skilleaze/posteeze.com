@@ -183,7 +183,12 @@ INDEX = head("Posteeze: your socials, on autopilot",
 <div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a><a class="btn btn-lg ghost" href="mailto:{CONTACT}">Talk to us</a></div>
 </div></section>
 
-<div class="sticky-cta" aria-hidden="false"><a class="btn" href="{APP_URL}/auth">Start free</a></div>
+<div class="sticky-cta" id="sticky-cta"><a class="btn" href="{APP_URL}/auth">Start free</a></div>
+<script>
+(function(){{var bar=document.getElementById('sticky-cta');if(!('IntersectionObserver' in window)){{bar.classList.add('show');return;}}
+var seen=new Set();var io=new IntersectionObserver(function(es){{es.forEach(function(e){{e.isIntersecting?seen.add(e.target):seen.delete(e.target);}});bar.classList.toggle('show',seen.size===0);}});
+document.querySelectorAll('.hero .cta, .final-box .cta').forEach(function(el){{io.observe(el);}});}})();
+</script>
 """ + FOOT
 
 
