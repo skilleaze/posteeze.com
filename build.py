@@ -47,7 +47,7 @@ def head(title, desc, path=""):
 <body>
 <header><div class="wrap nav">
 <a href="/" aria-label="Posteeze home"><img src="/assets/logo-text-dark.svg" alt="Posteeze" width="170" height="30"></a>
-<nav><a href="/#features">Features</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a><a href="{APP_URL}/auth/login">Sign in</a><a class="btn" href="{APP_URL}/auth">Start free</a></nav>
+<nav><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/#pricing">Pricing</a><a href="{APP_URL}/auth/login">Sign in</a><a class="btn" href="{APP_URL}/auth">Get started</a></nav>
 </div></header>
 <main>
 """
@@ -88,106 +88,150 @@ MOCKUP = """<div class="mock" role="img" aria-label="Posteeze calendar showing s
 <div class="day"><b>Thu</b><div class="post fb"><i>f</i>Weekend offer</div></div>
 <div class="day"><b>Fri</b><div class="post ig"><i>IG</i>Team Friday</div><div class="post tt"><i>TT</i>Trend remix</div></div>
 </div>
-<div class="mock-ai"><span class="spark" aria-hidden="true">&#10022;</span><div><b>AI draft ready</b><small>3 captions for Wednesday, in your brand voice</small></div><span class="mock-btn">Approve</span></div>
+<div class="mock-ai"><span class="spark" aria-hidden="true">&#10022;</span><div><b>Trend spotted: new posts ready</b><small>2 designs and 1 video drafted from today's research</small></div><span class="mock-btn">Approve</span></div>
 </div>"""
 
-INDEX = head("Posteeze: your socials, on autopilot",
-             "Plan, write and schedule posts for every channel from one calendar. Posteeze publishes them on time.") + f"""
+I_SEARCH = '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>'
+I_IMAGE = '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/>'
+I_VIDEO = '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-4v12l-6-4z"/>'
+I_PEN = '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'
+I_CLOCK = '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>'
+
+PLANS = [
+  ("Basic", 49, "For a small business getting consistent.", False,
+   ["3 social channels", "30 AI posts a month", "AI-designed images and captions", "Weekly industry research", "Auto-scheduling and posting", "1 brand"]),
+  ("Standard", 99, "For brands that want video, too.", False,
+   ["6 social channels", "60 AI posts a month", "8 AI short videos a month", "Daily trend and industry research", "Auto-scheduling and posting", "1 brand"]),
+  ("Pro", 199, "Your full AI social media team.", True,
+   ["10 social channels", "120 AI posts a month", "20 AI videos, including cinematic", "Daily research and trend alerts", "Best-time posting", "Team and client approvals"]),
+  ("Ultra", 399, "For agencies and multi-brand businesses.", False,
+   ["25 social channels", "300 AI posts a month", "50 AI videos, including cinematic", "Everything in Pro", "3 brands", "Priority support"]),
+]
+
+def plan_card(name, price, tag, pop, feats):
+    cls = "plan pop" if pop else "plan"
+    badge = '<div class="badge">Most popular</div>' if pop else ""
+    lis = "".join(f"<li>{CHECK}{f}</li>" for f in feats)
+    btn = "btn" if pop else "btn ghost"
+    return f'''<div class="{cls}">{badge}<h3>{name}</h3><p class="tag">{tag}</p>
+<div class="price"><span class="amt">${price}</span><span class="per">/month</span></div>
+<a class="{btn} btn-block" href="{APP_URL}/auth?plan={name.lower()}">Choose {name}</a>
+<ul>{lis}</ul></div>'''
+
+INDEX = head("Posteeze: your AI social media manager",
+             "Posteeze learns your business, researches your industry, designs posts and videos, and publishes to every channel on autopilot.") + f"""
 <section class="hero"><div class="wrap hero-grid">
 <div class="hero-copy">
-<div class="pill"><span class="dot" aria-hidden="true"></span>Social media scheduling, with AI built in</div>
-<h1>Your socials,<br>on <em>autopilot</em>.</h1>
-<p class="lead">Plan a month of posts in one sitting. Posteeze writes them with AI, lines them up on one calendar and publishes them to every channel on time.</p>
-<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a><a class="btn btn-lg ghost" href="#how">See how it works</a></div>
+<div class="pill"><span class="dot" aria-hidden="true"></span>Now in early access</div>
+<h1>Your AI social media manager, on <em>autopilot</em>.</h1>
+<p class="lead">Posteeze learns your business, researches your industry every day, designs your posts and videos, and publishes them to every channel at the best time. You approve, it does the rest.</p>
+<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start your autopilot</a><a class="btn btn-lg ghost" href="#pricing">See pricing</a></div>
 <ul class="trust">
-<li>{CHECK}Official login for every network</li>
+<li>{CHECK}Set up in 4 simple steps</li>
+<li>{CHECK}Plans from $49 a month</li>
 <li>{CHECK}Approve before anything goes live</li>
-<li>{CHECK}One calendar for all your brands</li>
 </ul>
 </div>
 {MOCKUP}
 </div></section>
 
 <section class="strip" aria-label="Supported channels"><div class="wrap">
-<p class="strip-title">Publish to the networks your customers use</p>
+<p class="strip-title">Posts to every network your customers use</p>
 <div class="channels">{''.join(f'<span>{c}</span>' for c in CHANNELS)}<span>and more</span></div>
 </div></section>
 
-<section id="why"><div class="wrap split">
+<section id="save"><div class="wrap save">
 <div>
-<div class="eyebrow">Why Posteeze</div>
-<h2>Posting every day is a job. Hand it to autopilot.</h2>
+<div class="eyebrow">Replace a whole team</div>
+<h2>A full social media team, for a fraction of the cost.</h2>
+<p class="sub">In Dubai, a social media manager, a designer and a video editor together typically cost <strong>$4,000 to $8,000 a month</strong>. Posteeze does the research, design, video, writing and posting, from <strong>$49 a month</strong>.</p>
+<a class="btn btn-lg" href="#pricing">Compare plans</a>
 </div>
-<div class="compare">
-<div class="col before"><h3>Without Posteeze</h3><ul>
-<li>Logging in to five apps to post the same update</li>
-<li>Writing captions from scratch, every time</li>
-<li>Gaps in your feed whenever things get busy</li>
-</ul></div>
-<div class="col after"><h3>With Posteeze</h3><ul>
-<li>Write once, publish everywhere from one place</li>
-<li>AI drafts captions in your brand's voice</li>
-<li>Posts go out on schedule, even on your busiest days</li>
-</ul></div>
-</div>
-</div></section>
-
-<section id="features"><div class="wrap">
-<div class="eyebrow">What you get</div>
-<h2>Everything your social calendar needs, in one place.</h2>
-<div class="grid">
-<div class="card">{ICON(I_CAL)}<h3>One calendar</h3><p>See every post for every channel by day, week or month, and drag to reschedule.</p></div>
-<div class="card">{ICON(I_SPARK)}<h3>AI writing</h3><p>Turn an idea into captions and images that fit each platform, in your brand's voice.</p></div>
-<div class="card">{ICON(I_AUTO)}<h3>Autopilot</h3><p>Queue posts ahead and they go out at the right time, with retries if a network hiccups.</p></div>
-<div class="card">{ICON(I_CHECK)}<h3>Approvals</h3><p>Invite your team or clients to review drafts before anything is published.</p></div>
-<div class="card">{ICON(I_CHART)}<h3>Analytics</h3><p>Track reach and engagement per channel and per post, in one view.</p></div>
-<div class="card">{ICON(I_TEAM)}<h3>Workspaces</h3><p>Keep each brand or client separate, with its own channels, members and settings.</p></div>
+<div class="vs">
+<div class="vs-col"><div class="vs-h">In-house team</div><ul>
+<li><span>Social media manager</span><b>$1,600+</b></li>
+<li><span>Graphic designer</span><b>$1,100+</b></li>
+<li><span>Video editor</span><b>$1,400+</b></li>
+</ul><div class="vs-total"><span>Every month</span><b>$4,000+</b></div></div>
+<div class="vs-col win"><div class="vs-h">Posteeze Pro</div><ul>
+<li><span>Research and strategy</span><b>Included</b></li>
+<li><span>Designs and AI videos</span><b>Included</b></li>
+<li><span>Writing and posting</span><b>Included</b></li>
+</ul><div class="vs-total"><span>Every month</span><b>$199</b></div></div>
+<p class="fine">Team costs are typical UAE monthly salaries for each role (PayScale, Naukrigulf, GulfTalent, 2026), converted to USD.</p>
 </div>
 </div></section>
 
 <section id="how"><div class="wrap">
 <div class="eyebrow">How it works</div>
-<h2>Set it up once. Posteeze keeps posting.</h2>
-<div class="steps">
-<div class="card"><h3>Connect your channels</h3><p>Sign in to each network through its official login. Posteeze never sees your passwords.</p></div>
-<div class="card"><h3>Plan and write</h3><p>Draft posts yourself or with AI, add media, and place them on the calendar.</p></div>
-<div class="card"><h3>Publish on time</h3><p>Posteeze sends each post at its scheduled time and shows you how it performs.</p></div>
-</div>
-<div class="cta center"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a></div>
+<h2>Set up in 4 steps. Then it runs itself.</h2>
+<ol class="flow">
+<li><span class="n">1</span><h3>Pick your channels</h3><p>Choose where you post: Instagram, TikTok, LinkedIn, Facebook, YouTube and more.</p></li>
+<li><span class="n">2</span><h3>Connect them</h3><p>Sign in through each network's official login. We never see your passwords.</p></li>
+<li><span class="n">3</span><h3>Tell the AI about your business</h3><p>Your products, audience, tone and goals. It becomes your brand brief.</p></li>
+<li><span class="n">4</span><h3>Choose your plan and go</h3><p>Pick posts per month and the next one or two months are planned, designed and scheduled.</p></li>
+</ol>
+<div class="cta center"><a class="btn btn-lg" href="{APP_URL}/auth">Start your autopilot</a></div>
 </div></section>
 
-<section id="who"><div class="wrap">
-<div class="eyebrow">Built for</div>
-<h2>Whoever runs your socials, Posteeze fits.</h2>
-<div class="grid three">
-<div class="card"><h3>Business owners</h3><p>Keep every channel active without hiring a full-time social media manager.</p></div>
-<div class="card"><h3>Agencies</h3><p>Run every client from one login, each in its own workspace with its own approvals.</p></div>
-<div class="card"><h3>Marketing teams</h3><p>Plan campaigns together, review drafts and see what performs, in one place.</p></div>
+<section id="features"><div class="wrap">
+<div class="eyebrow">Every day, on autopilot</div>
+<h2>What your AI social media manager does for you.</h2>
+<div class="grid">
+<div class="card">{ICON(I_SEARCH)}<h3>Researches your industry</h3><p>Checks what is trending in your market every day and turns it into post ideas for your business.</p></div>
+<div class="card">{ICON(I_CAL)}<h3>Plans your calendar</h3><p>Builds a month of posts around your goals, offers and key dates, across every channel.</p></div>
+<div class="card">{ICON(I_IMAGE)}<h3>Designs your creatives</h3><p>Creates on-brand images, carousels and graphics in your colours and style.</p></div>
+<div class="card">{ICON(I_VIDEO)}<h3>Makes your videos</h3><p>AI videos, cinematic clips and motion graphics for Reels, TikTok and Shorts.</p></div>
+<div class="card">{ICON(I_PEN)}<h3>Writes every caption</h3><p>Platform-ready captions and hashtags in your brand's voice, for every post.</p></div>
+<div class="card">{ICON(I_CLOCK)}<h3>Posts at the best time</h3><p>Publishes everywhere at once, at the times your audience is most active.</p></div>
+<div class="card">{ICON(I_CHART)}<h3>Learns what works</h3><p>Tracks reach and engagement, spots what goes viral and does more of it.</p></div>
+<div class="card">{ICON(I_CHECK)}<h3>Asks before posting</h3><p>Review the plan in one click, or let it post on full autopilot. Your choice.</p></div>
+<div class="card">{ICON(I_TEAM)}<h3>Runs many brands</h3><p>Each brand gets its own brief, channels, calendar and approvals.</p></div>
 </div>
+</div></section>
+
+<section id="tools"><div class="wrap split">
+<div>
+<div class="eyebrow">Powered by the best AI</div>
+<h2>Cinematic AI video and studio-quality design, built in.</h2>
+</div>
+<div>
+<p class="sub">Posteeze uses leading AI models for writing, image and video, including Higgsfield and Magnific. AI credits are included in every plan.</p>
+<div class="chips"><span>Higgsfield</span><span>Magnific</span><span>OpenAI</span><span>Claude</span></div>
+<p class="sub small">Already have accounts? Connect your own Higgsfield, Magnific or OpenAI keys to generate beyond your plan. Prefer working in Claude? Connect Posteeze to Claude and run your social media from a chat.</p>
+</div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+<div class="eyebrow">Pricing</div>
+<h2>Simple plans, in US dollars.</h2>
+<p class="sub">Every plan includes AI research, design, writing and auto-posting. Change or cancel any time.</p>
+<div class="plans">{''.join(plan_card(*p) for p in PLANS)}</div>
 </div></section>
 
 <section id="faq"><div class="wrap faq-wrap">
 <div><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
 <div class="faq">
-<details open><summary>Do I need to share my social media passwords?</summary><p>No. You connect each account through the network's own official login, and you can disconnect it any time.</p></details>
-<details><summary>Which networks can I post to?</summary><p>Instagram, Facebook, LinkedIn, X, TikTok, YouTube, Threads, Pinterest, Google Business Profile, Reddit, Bluesky, Mastodon, Telegram, Discord and more.</p></details>
-<details><summary>Can the AI write in my brand's voice?</summary><p>Yes. Give it an idea and it drafts captions for each platform. You edit or approve before anything is scheduled.</p></details>
-<details><summary>Can my team or clients approve posts first?</summary><p>Yes. Invite them to a workspace and drafts wait for review before they are published.</p></details>
-<details><summary>Can I manage more than one brand?</summary><p>Yes. Each brand or client gets its own workspace, channels and members.</p></details>
+<details open><summary>Does it really post by itself?</summary><p>Yes. Once your plan is set, Posteeze creates and schedules your posts and publishes them on time. You can review each post first, or turn on full autopilot.</p></details>
+<details><summary>How does it know my business?</summary><p>During setup you describe your business, audience, offers and tone. Posteeze turns that into a brand brief and uses it for every idea, design and caption.</p></details>
+<details><summary>What kind of videos can it make?</summary><p>Short AI videos, cinematic clips and motion graphics sized for Reels, TikTok and YouTube Shorts. The number per month depends on your plan.</p></details>
+<details><summary>Do I need to share my social media passwords?</summary><p>No. You connect each account through the network's own official login, and you can disconnect it any time.</p></details>
+<details><summary>Can I use my own Higgsfield, Magnific or OpenAI account?</summary><p>Yes. Your plan includes AI credits, and you can connect your own accounts to create more.</p></details>
+<details><summary>What currency do you charge in?</summary><p>All plans are priced and billed in US dollars.</p></details>
 </div>
 </div></section>
 
 <section class="final"><div class="wrap final-box">
-<h2>Ready to put your socials on autopilot?</h2>
-<p>Connect your first channel and schedule this week's posts today.</p>
-<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start free</a><a class="btn btn-lg ghost" href="mailto:{CONTACT}">Talk to us</a></div>
+<h2>Put your social media on autopilot today.</h2>
+<p>Set up in 4 steps. Your first month of posts is ready the same day.</p>
+<div class="cta"><a class="btn btn-lg" href="{APP_URL}/auth">Start your autopilot</a><a class="btn btn-lg ghost" href="mailto:{CONTACT}">Talk to us</a></div>
 </div></section>
 
-<div class="sticky-cta" id="sticky-cta"><a class="btn" href="{APP_URL}/auth">Start free</a></div>
+<div class="sticky-cta" id="sticky-cta"><a class="btn" href="{APP_URL}/auth">Start your autopilot</a></div>
 <script>
 (function(){{var bar=document.getElementById('sticky-cta');if(!('IntersectionObserver' in window)){{bar.classList.add('show');return;}}
 var seen=new Set();var io=new IntersectionObserver(function(es){{es.forEach(function(e){{e.isIntersecting?seen.add(e.target):seen.delete(e.target);}});bar.classList.toggle('show',seen.size===0);}});
-document.querySelectorAll('.hero .cta, .final-box .cta').forEach(function(el){{io.observe(el);}});}})();
+document.querySelectorAll('.hero .cta, .final-box .cta, .plans').forEach(function(el){{io.observe(el);}});}})();
 </script>
 """ + FOOT
 
