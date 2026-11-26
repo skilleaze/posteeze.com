@@ -29,7 +29,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(18,20,23,.9);backdrop-fi
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--muted);margin-bottom:22px}
 .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(198,244,50,.18)}
-.hero h1{font-size:clamp(44px,6.2vw,78px);font-weight:800}
+.hero h1{font-size:clamp(40px,5.2vw,66px);font-weight:800}
 .hero h1 em{font-style:normal;color:var(--lime)}
 .lead{color:var(--muted);font-size:clamp(18px,1.6vw,20px);max-width:540px;margin:22px 0 30px}
 .trust{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-direction:column;gap:8px;color:#D5D8DD;font-size:15px}
@@ -171,7 +171,7 @@ footer{padding-bottom:110px}
 .plan.pop{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),0 24px 60px -30px rgba(198,244,50,.35)}
 .badge{position:absolute;top:-13px;left:22px;background:var(--lime);color:var(--night);font-size:12px;font-weight:700;border-radius:999px;padding:4px 12px}
 .plan h3{font-size:22px}
-.plan .tag{color:var(--muted);font-size:15px;margin:6px 0 18px;min-height:44px}
+.plan .tag{color:var(--muted);font-size:15px;line-height:1.5;margin:6px 0 18px;min-height:45px}
 .price{display:flex;align-items:baseline;gap:4px;margin-bottom:18px}
 .price .amt{font-family:var(--display);font-size:44px;font-weight:800;line-height:1}
 .price .per{color:var(--muted)}
