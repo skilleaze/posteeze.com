@@ -74,8 +74,14 @@ ORBIT = """<svg class="orbit" viewBox="0 0 64 64" role="img" aria-label="Posteez
 <path d="M46 18 A20 20 0 1 0 52 32" fill="none" stroke="#C6F432" stroke-width="5" stroke-linecap="round"/>
 <circle cx="50" cy="20" r="4" fill="#C6F432"/><circle cx="32" cy="32" r="4" fill="#C6F432"/></svg>"""
 
-CHANNELS = ["Instagram", "Facebook", "LinkedIn", "X", "TikTok", "YouTube", "Threads", "Pinterest",
-            "Google Business Profile", "Reddit", "Bluesky", "Mastodon", "Telegram", "Discord"]
+import json as _json, os as _os
+CHANNEL_ICONS = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "channel_icons.json")))
+CHANNELS = [c["name"] for c in CHANNEL_ICONS]
+
+def channel_logo(c, size=22):
+    glyph = (f'<path transform="translate(8 8) scale(0.8333)" d="{c["path"]}" fill="#fff"/>' if c["path"]
+             else '<text x="18" y="24.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="17" fill="#fff">in</text>')
+    return f'<svg width="{size}" height="{size}" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="{c["bg"]}"/>{glyph}</svg>'
 
 CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C6F432" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>'
 
@@ -137,7 +143,7 @@ INDEX = head("Posteeze: your AI social media manager",
 
 <section class="strip" aria-label="Supported channels"><div class="wrap">
 <p class="strip-title">Posts to every network your customers use</p>
-<div class="channels">{''.join(f'<span>{c}</span>' for c in CHANNELS)}<span>and more</span></div>
+<div class="channels">{''.join(f'<span class="ch">{channel_logo(c)}{c["name"]}</span>' for c in CHANNEL_ICONS)}<span>and more</span></div>
 </div></section>
 
 <section id="save"><div class="wrap save">

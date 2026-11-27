@@ -62,7 +62,8 @@ section h2{font-size:clamp(30px,4vw,48px);font-weight:800;max-width:720px}
 .strip{padding:36px 0}
 .strip-title{margin:0 0 16px;color:var(--muted);font-size:15px;text-align:center}
 .channels{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.channels span{border:1px solid var(--line);border-radius:999px;padding:7px 15px;color:#D5D8DD;font-size:14px}
+.channels span{border:1px solid var(--line);border-radius:999px;padding:7px 15px;color:#D5D8DD;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.channels span.ch{padding-left:8px}
 
 .split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
 .compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
